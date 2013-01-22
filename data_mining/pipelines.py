@@ -50,9 +50,8 @@ class DropSpamPipeline(object):
             if phone in contents:
                 self.nr_of_phones += 1
 
-        print 'nr of phones ' + str(self.nr_of_phones) 
         if self.nr_of_phones > 5:
-            raise DropItem("This is presumably spam. %s has more 5 phones listed in the description" % item)
+            raise DropItem("This is presumably spam. %s has more than 5 phones listed in the description" % item)
         else:
             return item
 
