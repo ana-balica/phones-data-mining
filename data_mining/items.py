@@ -13,7 +13,6 @@ class AddItem(Item):
     id = Field()
     title = Field()
     author = Field()
-    author_url = Field()
     date = Field()
     region = Field()
     type = Field()

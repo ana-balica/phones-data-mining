@@ -10,8 +10,13 @@ BOT_NAME = 'data_mining'
 
 SPIDER_MODULES = ['data_mining.spiders']
 NEWSPIDER_MODULE = 'data_mining.spiders'
-COOKIES_ENABLED = True
-COOKIES_DEBUG = True
+DOWNLOAD_DELAY = 0.5
+
+ITEM_PIPELINES = [
+    'data_mining.pipelines.StripPipeline',
+    'data_mining.pipelines.DetermineTypePipeline',
+    'data_mining.pipelines.DropSpamPipeline',
+]
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'data_mining (+http://www.yourdomain.com)'
