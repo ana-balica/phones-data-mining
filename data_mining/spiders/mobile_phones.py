@@ -24,22 +24,22 @@ class MobilePhonesSpider(BaseSpider):
         '''
         Extract add links and proceed to the next page
         '''
-        # hxs = HtmlXPathSelector(response)
-        # add_links = hxs.select(".//div[@class='adsPage__list__title']/a/@href").extract()
-        # for add_link in add_links:
-        #     print add_link
-        #     json_url = self.buildURL(add_link)
-        #     if json_url:
-        #         log.msg("Found link %s" % json_url, level=log.INFO)
-        #         yield Request(json_url, callback=self.parseItem, priority=2, meta={'link': add_link})
+        hxs = HtmlXPathSelector(response)
+        add_links = hxs.select(".//div[@class='adsPage__list__title']/a/@href").extract()
+        for add_link in add_links:
+            print add_link
+            json_url = self.buildURL(add_link)
+            if json_url:
+                log.msg("Found link %s" % json_url, level=log.INFO)
+                yield Request(json_url, callback=self.parseItem, priority=2, meta={'link': add_link})
 
-        # self.page_number += 1
-        # if self.page_number == 5:
-        #     raise CloseSpider('Stopping spider - scraped 1000 pages')
-        # next_page_link = self.start_urls[0] + '/' + str(self.page_number)
-        # log.msg("Going to the next page %s" % next_page_link, level=log.INFO)
-        # yield Request(next_page_link, callback=self.parse, priority=1)
-        yield Request("http://999.md/backend/view/ad?id=1183274&language=ro", callback=self.parseItem, meta={'link': '/#!/1183274/'})
+        self.page_number += 1
+        if self.page_number == 6:
+            raise CloseSpider('Stopping spider - scraped 1000 pages')
+        next_page_link = self.start_urls[0] + '/' + str(self.page_number)
+        log.msg("Going to the next page %s" % next_page_link, level=log.INFO)
+        yield Request(next_page_link, callback=self.parse, priority=1)
+        # yield Request("http://999.md/backend/view/ad?id=1283071&language=ro", callback=self.parseItem, meta={'link': '/#!/1283071/'})
 
 
     def buildURL(self, link):
