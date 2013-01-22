@@ -14,6 +14,7 @@ DOWNLOAD_DELAY = 0.5
 
 ITEM_PIPELINES = [
     'data_mining.pipelines.StripPipeline',
+    'data_mining.pipelines.ValidationPipeline',
     'data_mining.pipelines.DetermineTypePipeline',
     'data_mining.pipelines.DropSpamPipeline',
 ]
